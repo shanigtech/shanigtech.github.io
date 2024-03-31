@@ -1,0 +1,47 @@
+@keyframes topInlogo {
+    0% {
+        transform: translateY(-150px);
+    }
+}
+
+@keyframes topInMenu {
+    0% {
+        transform: translateY(-163px);
+    }
+}
+
+@keyframes topInBannerContent {
+    0% {
+        transform: translateX(-500px);
+    }
+}
+
+@keyframes topInBannerImg {
+    0% {
+        transform: translateX(500px);
+    }
+}
+
+@keyframes BannerImgUpNDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes circularImage {
+    0% {
+        box-shadow: 0 0 10px -2px var(--green);
+    }
+    50% {
+        box-shadow: 0 0 10px -8px var(--green);
+    }
+    75% {
+        box-shadow: 0 0 10px -2px var(--green);
+    }
+}

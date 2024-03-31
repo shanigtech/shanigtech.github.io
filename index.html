@@ -1,70 +1,931 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>To-Do List</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-    .container {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        margin-bottom: 10px;
-    }
-    .btn {
-        padding: 5px 10px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-</style>
-</head>
-<body>
-<div class="container">
-    <h2>To-Do List</h2>
-    <input type="text" id="taskInput" placeholder="Add new task">
-    <button onclick="addTask()" class="btn">Add</button>
-    <ul id="taskList"></ul>
-</div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Expert website developer and designer proficient in HTML, CSS, JavaScript, React, PHP, MySQL, and Python. Crafting seamless digital experiences with a passion for cutting-edge technologies."
+    >
+    <meta author="CDH WebCraft">
+    <meta name="keywords" content="full stack developer, frontend developer, backend developer, website developer, website designer, website modifications, react website developer, php expert">
 
-<script>
-    function addTask() {
-        var taskInput = document.getElementById("taskInput");
-        var taskList = document.getElementById("taskList");
-        
-        if (taskInput.value === "") {
-            alert("Please enter a task.");
-            return;
-        }
-        
-        var li = document.createElement("li");
-        li.textContent = taskInput.value;
-        
-        var removeBtn = document.createElement("button");
-        removeBtn.textContent = "Remove";
-        removeBtn.className = "btn";
-        removeBtn.onclick = function() {
-            li.remove();
-        };
-        
-        li.appendChild(removeBtn);
-        taskList.appendChild(li);
-        
-        taskInput.value = "";
-    }
-</script>
+    <title>CDH WebCraft</title>
+    <link rel="stylesheet" href="./app-assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./app-assets/media/logo/chd_logo.png">
+    <link rel="apple-touch-icon" href="./app-assets/media/logo/chd_logo.png">
+
+    <!-- Other Styling -->
+    <link rel="stylesheet" href="./app-assets/css/utility.css">
+    <link rel="stylesheet" href="./app-assets/css/fonts.css">
+    <link rel="stylesheet" href="./app-assets/css/cursor.css">
+
+    <!-- Keyframes -->
+    <link rel="stylesheet" href="./app-assets/css/keyframes.css">
+
+    <!--bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Icons from Boxicon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Animations Liberary AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+    <div id="desktop-site">
+        <!-- Header -->
+        <header class="w-100 d-flex-center header" >
+            <div class="header-body space-between a-center h-100">
+                <div class="" data-aos="fade-down" data-aos-duration="500">
+                    <a href="/" class="logo-box d-flex-center a">
+                        <img src="./app-assets/media/logo/chd_logo.png" alt="">
+                        <div class="title-text">
+                            <span>Web</span><span>Craft</span>
+                        </div>
+                    </a>
+                </div>
+                <ul class="a-center space-around lt-none f-17">
+                    <li data-aos="fade-down" data-aos-duration="400" data-aos-delay="200"><a class="a menu-link active" href="/" title="" >Home</a></li>
+                    <li data-aos="fade-down" data-aos-duration="400" data-aos-delay="350"><a class="a menu-link" href="/#about" title="" >About</a></li>
+                    <li data-aos="fade-down" data-aos-duration="400" data-aos-delay="500"><a class="a menu-link" href="/#portfolio" title="" >Portfolio</a></li>
+                    <li data-aos="fade-down" data-aos-duration="400" data-aos-delay="650"><a class="a menu-link" href="/#service" title="" >Service</a></li>
+                    <li data-aos="fade-down" data-aos-duration="400" data-aos-delay="800"><a class="a menu-link" href="/#blogs" title="" >Blog</a></li>
+                    <li data-aos="fade-down" data-aos-duration="400" data-aos-delay="950"><a class="a menu-link" href="/#contact" title="" >Contact</a></li>
+                    <li data-aos="fade-down" data-aos-duration="400" data-aos-delay="1100"><a><button type="button" class="button btn-inset">Download CV</button></a></li>
+                </ul>
+                <div class="menu-icon">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div>
+                <div class="SidebarMenu">
+                    <div class="SideContent">
+                        <a onclick="closeSidebar()" href="/" title="" >Home</a>
+                        <a onclick="closeSidebar()" href="/#about" title="" >About</a>
+                        <a onclick="closeSidebar()" href="/#portfolio" title="" >Portfolio</a>
+                        <a onclick="closeSidebar()" href="/#service" title="" >Service</a>
+                        <a onclick="closeSidebar()" href="/#blogs" title="" >Blog</a>
+                        <a onclick="closeSidebar()" href="/#contact" title="" >Contact</a>
+                        <a href="link-to-cv-file.pdf" download>
+                            <button type="button" class="button btn-outset" onclick="closeSidebar()">
+                                Download CV
+                            </button>
+                        </a>
+                    </div>
+                    <div class="SideMenuCancel">
+                        <a aria-label="" class="a" onclick="closeSidebar()">
+                            <span title="Close">X</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Banner -->
+        <Section>
+            <div class="banner d-flex-center">
+                <div class="banner-container space-between">
+                    <div class="banner-content">
+                        <p class="orange f-25 m-0" data-aos="fade-right" data-aos-duration="500" data-aos-delay="1300">Hello, I'm</p>
+                        <p class="" data-aos="fade-right" data-aos-duration="500" data-aos-delay="1500">Zeeshan Ali</p>
+                        <p class="f-18" data-aos="fade-right" data-aos-duration="500" data-aos-delay="1700">
+                            A
+                            <span>Web Developer</span>
+                            From
+                            <span>Rawalpindi</span>
+                        </p>
+                        <p class="black" data-aos="fade-right" data-aos-duration="500" data-aos-delay="1900">
+                            I'm a Website developer based in Rawalpindi, Pakistan. I'm very passionate and dedicated to my work.
+                        </p>
+                        <div class="about-n-info a-center">
+                            <a href="/#about">
+                                <button type="button" class="button btn-outset btn-about" data-aos="fade-right" data-aos-duration="500" data-aos-delay="2100">
+                                    About Me
+                                </button>
+                            </a>
+                            <div class="social-icons-container space-around">
+                                <a href="https://facebook.com/cdh.webcraft" title="Facebook" data-aos="fade-down" data-aos-duration="500" data-aos-delay="2300">
+                                    <div class="social-icon-box">
+                                        <i class='bx bxl-facebook'></i>
+                                    </div>
+                                </a>
+                                <a href="https://twitter.com/shanideveloper" title="Twitter" data-aos="fade-down" data-aos-duration="500" data-aos-delay="2400">
+                                    <div class="social-icon-box">
+                                        <i class='bx bxl-twitter'></i>
+                                    </div>
+                                </a>
+                                <a href="https://www.linkedin.com/in/shani-cdh/" title="Linkedin" data-aos="fade-down" data-aos-duration="500" data-aos-delay="2500">
+                                    <div class="social-icon-box">
+                                        <i class='bx bxl-linkedin'></i>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/shanigtech" title="Github" data-aos="fade-down" data-aos-duration="500" data-aos-delay="2600">
+                                    <div class="social-icon-box">
+                                        <i class='bx bxl-github'></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="banner-img-container d-flex-center relative">
+                        <img src="./app-assets/media/Img/shani.png" alt="" class="" data-aos="fade-left" data-aos-delay="2800">
+                    </div>
+                </div>
+            </div>
+        </Section>
+
+        <!-- About -->
+        <section>
+            <div class="about-container">
+                <div class="about-body space-around mxy-auto">
+                    <div class="about-content-box" data-aos="zoom-in">
+                        <div class="about-img-box mxy-auto">
+                            <img src="./app-assets/media/Img/style-circle-red.png" alt="">
+                            <i class='bx bxl-sketch'></i>
+                        </div>
+                        <p>Pixel Perfect</p>
+                        <p>As an expert web developer, I craft pixel-perfect websites with precision and elegance, ensuring seamless user experiences that impress.</p>
+                    </div>
+                    <div class="about-content-box" data-aos="zoom-in">
+                        <div class="about-img-box mxy-auto">
+                            <img src="./app-assets/media/Img/style-circle-blue.png" alt="">
+                            <i class='bx bx-dna'></i>
+                        </div>
+                        <p>High Quality</p>
+                        <p>As an expert web developer, I prioritize high-quality websites, ensuring functionality, aesthetics, and user experience meet the highest standards.</p>
+                    </div>
+                    <div class="about-content-box" data-aos="zoom-in">
+                        <div class="about-img-box mxy-auto">
+                            <img src="./app-assets/media/Img/style-circle-yellow.png" alt="">
+                            <i class='bx bxs-bolt'></i>
+                        </div>
+                        <p>Awesome Idea</p>
+                        <p>With expertise in web development, I turn ideas into innovative digital experiences, blending creativity with technical skill to captivate audiences and drive client success.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="about" class="about-container-content mxy-auto space-around a-center">
+                <div class="acc-section">
+                    <img src="./app-assets/media/Img/style-line-yellow.png" class="absolute" alt="" data-aos="fade-right" >
+                    <img src="./app-assets/media/Img/about_img_one.jpg" alt="Website Developer">
+                </div>
+                <div class="acc-section" data-aos="fade-down" data-aos-delay="200">
+                    <p>I'm a Website Developer</p>
+                    <p>I Can Build Any Website You Need.</p>
+                    <p class="complete-landing-page-name">
+                        <span class="services-changer"></span>
+                        <span class="changerWebsitetitle"></span>
+                    </p>
+                    <p>
+                        With my expertise in web development, I possess the capability to create any website you desire. Whether it's an e-commerce platform, a portfolio site, or a corporate webpage, I have the skills to bring your vision to life. From complex functionalities to stunning designs, I specialize in crafting tailor-made solutions that meet your specific needs and exceed your expectations. Let me transform your ideas into a fully functional and visually captivating online presence, delivering results that elevate your online presence and drive success.
+                    </p>
+                    <a href="/#contact">
+                        <button type="button" class="button btn-outset">Hire Me</button>
+                    </a>
+                    <img src="./app-assets/media/Img/style-purple-brush-bg.png" class="absolute" alt="" data-aos="fade-left">
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="w-100">
+            <div class="portfolio-container relative">
+                <img src="./app-assets/media/Img/style-paint-bg-mix-stamp.png" class="absolute" alt="" data-aos="fade-right" data-aos-duration="800">
+                <img src="./app-assets/media/Img/style-paint-bg-blue.png" class="absolute porfolio-img-bottom" alt="" data-aos="fade-left" data-aos-duration="1000">
+                <div class="section-head-content">
+                    <p>Portfolio</p>
+                    <p>Latest Works</p>
+                    <p>
+                        Explore my latest works, where creativity meets innovation in every pixel.
+                    </p>
+                </div>
+                <div class="portfolio-designs mxy-auto">
+                    <div class="project-box" data-aos="flip-up" data-aos-anchor-placement="top-bottom" data-aos-duration="800">
+                        <a href="https://www.dummy.nxmuni.com" title="My Project" target="_blank" rel="noopener">
+                            <img src="./app-assets/media/projects/Studio_VIP.png" alt="">
+                        </a>
+                        <h4>
+                            <a href="https://www.dummy.nxmuni.com" title="Studio VIP" target="_blank" rel="noopener">
+                                Studio VIP
+                            </a>
+                        </h4>
+                        <p>DJ's Website</p>
+                    </div>
+                    <div class="project-box" data-aos="flip-up" data-aos-anchor-placement="top-bottom" data-aos-duration="800" data-aos-delay="200">
+                        <a href="https://cdhwebcraft.com" title="My Project" target="_blank" rel="noopener">
+                            <img src="./app-assets/media/projects/CDH_WebCraft.png" alt="">
+                        </a>
+                        <h4>
+                            <a href="https://cdhwebcraft.com" title="Studio VIP" target="_blank" rel="noopener" >
+                                CDH WebCraft
+                            </a>
+                        </h4>
+                        <p>Portfolio Website</p>
+                    </div>
+                    <div class="project-box" data-aos="flip-up" data-aos-anchor-placement="top-bottom" data-aos-duration="800" data-aos-delay="400">
+                        <a href="https://creativesolutions.live/" title="My Project" target="_blank" rel="noopener" >
+                            <img src="./app-assets/media/projects/Creative_Solutions.png" alt="">
+                        </a>
+                        <h4>
+                            <a href="https://creativesolutions.live/" title="Studio VIP" target="_blank" rel="noopener" >
+                                Creative Solutions
+                            </a>
+                        </h4>
+                        <p>Business Website</p>
+                    </div>
+                </div>
+                <div class="portfolio-designs mxy-auto">
+                    <!-- <div class="project-box">
+                        <a href="" title="My Project" target="_blank" >
+                            <img src="./app-assets/media/projects/" alt="">
+                        </a>
+                        <h4>
+                            <a href="" title="Studio VIP" target="_blank" >
+                                Studio VIP
+                            </a>
+                        </h4>
+                        <p>DJ's Website</p>
+                    </div> -->
+                    <!-- <div class="project-box">
+                        <a href="" title="My Project" target="_blank" >
+                            <img src="./app-assets/media/projects/" alt="">
+                        </a>
+                        <h4>
+                            <a href="" title="Studio VIP" target="_blank" >
+                                CDH WebCraft
+                            </a>
+                        </h4>
+                        <p>Portfolio Website</p>
+                    </div> -->
+                    <!-- <div class="project-box">
+                        <a href="" title="My Project" target="_blank" >
+                            <img src="./app-assets/media/projects/" alt="">
+                        </a>
+                        <h4>
+                            <a href="" title="Studio VIP" target="_blank" >
+                                Creative Solutions
+                            </a>
+                        </h4>
+                        <p>Business Website</p>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Me
+        <section id="why-me">
+            <div class="why-me-section border">
+                <div class="why-me-body border mxy-auto">
+                    <div class="space-between">
+                        <div class="why-me-inner-box border">
+
+                        </div>
+                        <div class="why-me-inner-box border">
+
+                        </div>
+                        <div class="why-me-inner-box border">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <section id="service">
+            <div class="service-section relative">
+                <img src="./app-assets/media/Img/style-paint-bg-mix.png" alt="" data-aos="fade-right" data-aos-duration="500">
+                <img src="./app-assets/media/Img/style-yellow-curve-line-fill.png" alt="" data-aos="fade-left" data-aos-duration="500">
+                <div class="service-container mxy-auto">
+                    <div class="section-head-content">
+                        <p>Services</p>
+                        <p>What I Do for Clients</p>
+                        <p>
+                            <!-- I help people in making thier brands by my services. -->
+                            Responsive and adaptive design are the predominant methods for crafting desktop-friendly websites.
+                        </p>
+                    </div>
+                    <div class="service-body">
+                        <ul class="lt-none tab-wrap space-around mxy-auto">
+                            <li>
+                                <input type="radio" name="service-tabs" id="cdh-services-tab-design-and-development" checked>
+                                <label for="cdh-services-tab-design-and-development" data-aos="zoom-in" data-aos-duration="500">
+                                    <div>
+                                        <i class='bx bx-cog'></i>
+                                        <p>Design & Development</p>
+                                    </div>
+                                </label>
+                                <div class="service-tab-content" data-aos="zoom-in" data-aos-duration="1000">
+                                    <p>Custom Website</p>
+                                    <p>
+                                        Whether you desire a custom site with simple or advanced features, rest assured, I can bring your vision to life with precision. With over two years of expertise in PHP, MySQL, JavaScript, React.js, HTML, and CSS, I ensure your website is tailored exactly to your specifications.
+                                    </p>
+                                    <p>Website Customization</p>
+                                    <p>
+                                        For any alterations to your existing layout, additional feature integrations, or any other modifications to your current website, I'm here to assist you every step of the way.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="radio" name="service-tabs" id="cdh-services-tab-wordpress">
+                                <label for="cdh-services-tab-wordpress" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="150">
+                                    <div>
+                                        <i class='bx bxl-wordpress'></i>
+                                        <p>WordPress</p>
+                                    </div>
+                                </label>
+                                <div class="service-tab-content">
+                                    <p>WordPress</p>
+                                    <p>
+                                        WordPress reigns as the world's leading website building framework, boasting over 70 million websites and a continually expanding user base. Its extensive collection of themes, plugins, and vibrant expert community distinguishes WordPress as the premier choice among website building platforms.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="radio" name="service-tabs" id="cdh-services-tab-shopify">
+                                <label for="cdh-services-tab-shopify" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="300">
+                                    <div>
+                                        <i class='bx bxl-shopify'></i>
+                                        <p>Shopify</p>
+                                    </div>
+                                </label>
+                                <div class="service-tab-content">
+                                    <p>Exclusive Store</p>
+                                    <p>
+                                        Owning an online store can fuel your business growth exponentially, tapping into the vast online shopping community of millions. With an efficient and user-friendly e-commerce website, you can effortlessly drive sales directly through your own platform.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="radio" name="service-tabs" id="cdh-services-tab-seo">
+                                <label for="cdh-services-tab-seo" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="450">
+                                    <div>
+                                        <i class='bx bx-search-alt-2'></i>
+                                        <p>SEO</p>
+                                    </div>
+                                </label>
+                                <div class="service-tab-content">
+                                    <p>Search Engine Optimization</p>
+                                    <p>
+                                        When potential customers seek your business, their first instinct is to conduct a Google search. I guarantee your presence on all major search engines, employing ethical White Hat SEO methods endorsed by Google, Bing, Yahoo, and others, ensuring optimal visibility and credibility for your business.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="my-skills-section relative">
+                <img src="./app-assets/media/Img/style-yellow-bg-mix.png" alt="" data-aos="fade-left" data-aos-duration="500">
+                <div class="skills-container space-between a-center mxy-auto">
+                    <div class="skills-body">
+                        <h5>My Skills</h5>
+                        <h4>I Continuously Evolving Skills to Stay Current.</h4>
+                        <p>
+                            Continuously honing my skills to stay abreast of the latest advancements in web development.
+                        </p>
+                        <div class="skill-name-container">
+                            <div class="skill-box" data-aos="fade-down" data-aos-duration="500">
+                                <div class="skill-bar purple-bg">
+                                    <div class="bar-tooltip">
+                                        <p>PHP</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-box" data-aos="fade-down" data-aos-duration="500">
+                                <div class="skill-bar green-bg">
+                                    <div class="bar-tooltip">
+                                        <p>React.js</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-box" data-aos="fade-down" data-aos-duration="500">
+                                <div class="skill-bar green-bg">
+                                    <div class="bar-tooltip">
+                                        <p>Python</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-box" data-aos="fade-down" data-aos-duration="500">
+                                <div class="skill-bar">
+                                    <div class="bar-tooltip">
+                                        <p>Node.js</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-box" data-aos="fade-down" data-aos-duration="500">
+                                <div class="skill-bar">
+                                    <div class="bar-tooltip">
+                                        <p>MySQL</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-box" data-aos="fade-down" data-aos-duration="500">
+                                <div class="skill-bar orange-bg">
+                                    <div class="bar-tooltip">
+                                        <p>JavasSript</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-box" data-aos="fade-down" data-aos-duration="500">
+                                <div class="skill-bar orange-bg">
+                                    <div class="bar-tooltip">
+                                        <p>HTML & CSS</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skills-body">
+                        <img src="./app-assets/media/Img/my-skills.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blogs Section -->
+        <section id="blogs">
+            <div class="blogs-section relative">
+                <img src="./app-assets/media/Img/style-purple-mix-stamp-bg.png" alt="" data-aos="fade-right" data-aos-duration="500">
+                <img src="./app-assets/media/Img/style-orange-dot-bg.png" alt="" data-aos="fade-left" data-aos-duration="500">
+                <div class="blogs-container">
+                    <div class="section-head-content">
+                        <p>From My Blogs</p>
+                        <p class="mxy-auto">Our Recents Uptades, Blogs, Tips, Tricks & More</p>
+                    </div>
+                    <div class="blogs-body mxy-auto space-between">
+                        <!-- Blog #1 -->
+                        <div class="blog-box" data-aos="zoom-in" data-aos-duration="500">
+                            <!-- Blog Image -->
+                            <div class="blog-img-box relative">
+                                <a href="#" title="Blog" class="a orange">
+                                    <img src="./app-assets/media/blogs/programming.jpg" alt="">
+                                    <!-- Blog Date -->
+                                    <div class="blog-date-div absolute">
+                                        <p>12 Dec</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Blog Category -->
+                            <p>
+                                <a href="#" class="a orange">Programming</a>
+                            </p>
+                            <!-- Blog Title -->
+                            <a href="#" class="a" title="">
+                                <p class="line-strike">
+                                    Programming is the most powerful asset of the today's world
+                                </p>
+                            </a>
+                        </div>
+
+                        <!-- Blog #2 -->
+                        <div class="blog-box" data-aos="zoom-in" data-aos-duration="1000">
+                            <!-- Blog Image -->
+                            <div class="blog-img-box relative">
+                                <a href="#" title="Blog" class="a orange">
+                                    <img src="./app-assets/media/blogs/social-media.jpg" alt="">
+                                    <!-- Blog Date -->
+                                    <div class="blog-date-div absolute">
+                                        <p>12 Dec</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Blog Category -->
+                            <p>
+                                <a href="#" class="a orange">Social Media</a>
+                            </p>
+                            <!-- Blog Title -->
+                            <a href="#" class="a" title="">
+                                <p class="line-strike">
+                                    Programming is the most powerful asset of the today's world
+                                </p>
+                            </a>
+                        </div>
+
+                        <!-- Blog #3 -->
+                        <div class="blog-box" data-aos="zoom-in" data-aos-duration="1500">
+                            <!-- Blog Image -->
+                            <div class="blog-img-box relative">
+                                <a href="#" title="Blog" class="a">
+                                    <img src="./app-assets/media/blogs/branding.jpg" alt="">
+                                    <!-- Blog Date -->
+                                    <div class="blog-date-div absolute">
+                                        <p>12 Dec</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Blog Category -->
+                            <p>
+                                <a href="#" class="a orange">Branding</a>
+                            </p>
+                            <!-- Blog Title -->
+                            <a href="#" class="a" title="">
+                                <p class="line-strike">
+                                    Programming is the most powerful asset of the today's world
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <!-- <section>
+            <div class="newsletter-section">
+                <div class="newsletter-container mxy-auto d-flex-center" data-aos="flip-right" data-aos-duration="1000">
+                    <div class="subscribe-body space-between">
+                        <div class="subscribe-content">
+                            <h5>Subscribe</h5>
+                            <h2>To Get Newsletter</h2>
+                            <p>
+                                Get latest news, updates, tips and trics in your inbox
+                            </p>
+                        </div>
+                        <div class="subscribe-content d-flex-center">
+                            <form action="#" class="">
+                                <div class="subscribe-button d-flex">
+                                    <input placeholder="Enter your email" type="email" name="subscriber" id="" aria-label="subscribe" required >
+                                    <button type="submit" class="btn-subscribe">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <section id="contact">
+            <div class="contact-section">
+                <div class="contact-container mxy-auto">
+                    <div class="section-head-content">
+                        <p>Contact Me</p>
+                        <p>I Want To Hear From You</p>
+                        <p>
+                            Please fill out the form on this section to contact with me. Or call between <br> 9:00 a.m. and 8:00 p.m. (GMT+5), Monday through Saturday
+                        </p>
+                    </div>
+                    <div class="contact-form mxy-auto">
+                        <form action="./app-assets/php/index.php" method="POST" onsubmit="return validateForm()">
+                            <div class="contact-detail-head space-between">
+                                <input type="search" name="name" id="name" placeholder="Your Name" required>
+                                <input type="search" name="contact" id="usercontact" placeholder="Your Contact" required>
+                            </div>
+                            <input type="search" name="subject" id="subject" placeholder="Subject" required>
+                            <textarea name="message" id="message" placeholder="Tell me more about your requirements" required></textarea>
+                            <a>
+                                <button type="submit" class="button btn-outset" onclick="checkFieldsAndPreview()">Submit</button>
+                            </a>
+                        </form>
+                    </div>
+                    <div class="location-container mxy-auto border">
+                        <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53381.00908150011!2d73.26775743411643!3d33.25829538125972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x392005bea6c1b8cf%3A0xc1ef0608b44b1eab!2sGujar%20Khan%2C%20Rawalpindi%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1703492590564!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <!-- <div class="contact-body space-between border">
+                        <div class="contact-content border">
+                            <h5>Let's <span>Chat!</span></h5>
+                            <h1>Tell Me More About <br> Your <span>Vision</span></h1>
+                            <div class="contact-info-box border">
+                                <div class="border">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-content border">
+                            <form action="#">
+                                <div class="d-flex">
+                                    <input type="search" name="first-name" id="" aria-label="First Name" placeholder="First Name" >
+                                    <input type="search" name="last-name" id="" aria-label="Last Name" placeholder="Last Name" >
+                                </div>
+                                <div class="phone-box">
+                                    <input type="search" name="phone" id="" aria-label="Subject" placeholder="Your Phone" >
+                                </div>
+                                <div class="subject-box">
+                                    <input type="search" name="subject" id="" aria-label="Subject" placeholder="Subject" >
+                                </div>
+
+                                <div class="contact-textarea">
+                                    <textarea name="messege" id="" placeholder="Type your messege here." ></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-section">
+                <div class="footer-body mxy-auto relative">
+                    <ul class="d-flex space-between">
+                        <li>
+                            <span class="footer-head">Explore More</span>
+                            <p>
+                                Dive deeper into my digital universe with Explore More, where you'll find links to my blogging endeavors, developer-centric resources, and interactive playgrounds. Uncover hidden gems within my website and embark on a journey of discovery.
+                            </p>
+                            <div class="my-details-footer">
+                                <span>Contact</span>
+                                <div class="my-contact-box d-flex">
+                                    <span><i class='bx bxs-phone'></i></span>
+                                    <span>+92 323 594-8057</span>
+                                </div>
+                                <div class="my-contact-box d-flex">
+                                    <span><i class='bx bxs-envelope'></i></span>
+                                    <span>contact@cdhwebcraft.com</span>
+                                </div>
+                                <div class="my-contact-box d-flex">
+                                    <span><i class='bx bxs-home'></i></span>
+                                    <span>Gujar Khan, Rawalpindi, PJ Pakistan 47880</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Direct Links</span>
+                            <ul>
+                                <li><a href="/" title="CDH WebCraft">Home</a></li>
+                                <li><a href="/#about" title="About Me">About</a></li>
+                                <li><a href="/#skills" title="My Skills">Skills</a></li>
+                                <li><a href="/#portfolio" title="My Portfolio">Portfolio</a></li>
+                                <li><a href="/#testimonials" title="Testimonials">Testimonials</a></li>
+                                <li><a href="/#contact" title="Contact">Contact Me</a></li>
+                                <li><a href="https://www.blogs.cdhwebcraft.com" target="_blank" title="My Blogs" rel="noopener">My Blogs</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>More From CDH</span>
+                            <ul>
+                                <li><a href="https://www.play.cdhwebcraft.com" target="_blank" title="Playground" rel="noopener">Playground</a></li>
+                                <li><a href="https://www.developer.cdhwebcraft.com" target="_blank" title="Developer" rel="noopener">Developer Side</a></li>
+                                <li><a href="https://www.designs.cdhwebcraft.com" target="_blank" title="Webite Elements Design" rel="noopener">Web Elements Designs</a></li>
+                                <!-- <li><a href="#" title="CDH">Skills</a></li>
+                                <li><a href="#" title="CDH">Portfolio</a></li> -->
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Support</span>
+                            <ul>
+                                <li><a href="/privacy" title="CDH">Privacy & Policy</a></li>
+                                <li><a href="/requirements" title="CDH">Project Requirements</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer-social space-between">
+                        <div class="footer-social-content"></div>
+                        <div class="footer-social-content">
+                            <a href="https://facebook.com/cdh.webcraft" title="Facebook">
+                                <div class="social-icon-box">
+                                    <i class='bx bxl-facebook'></i>
+                                </div>
+                            </a>
+                            <a href="https://twitter.com/shanideveloper" title="Twitter">
+                                <div class="social-icon-box">
+                                    <i class='bx bxl-twitter'></i>
+                                </div>
+                            </a>
+                            <a href="https://www.linkedin.com/in/shani-cdh/" title="Linkedin">
+                                <div class="social-icon-box">
+                                    <i class='bx bxl-linkedin'></i>
+                                </div>
+                            </a>
+                            <a href="https://github.com/shanigtech" title="Github">
+                                <div class="social-icon-box">
+                                    <i class='bx bxl-github'></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="copyright-section w-100 t-center">
+                        <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> <span>CDH WebCraft</span></span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Mobile View -->
+    <div id="mobile-site">
+        <div class="PhoneHeaderOnScroll" id="Header-N-PopUp">
+            <a href="/" title="CDH WebCraft" rel="CDH WebCraft">
+                <img src="./chd_logo.png" alt="" id="PopUpLogo">
+            </a>
+            <div class="PhoneProfileIcon" id="PopUpProfile">
+                <img src="./app-assets/media/Img/Shani-Phone.png" alt="Shani" id="ShaniPopUpImg">
+            </div>
+            <div class="PopUp-bg absolute">
+                <span class="PopUpCancel" title="Close">X</span>
+            </div>
+            <div class="PopUpContent absolute">
+                <h4>Zeeshan Ali</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio officiis ipsum dolor iure incidunt debitis sequi nisi culpa officia aut placeat ad modi magnam voluptatem inventore molestiae qui, consequatur quos?</p>
+                <div>
+                    <div class="a-center">
+                        <div><i class='bx bx-envelope'></i></div>
+                        <div class="mx-2">shanigtech@gmail.com</div>
+                    </div>
+                    <div class="a-center">
+                        <div><i class='bx bx-phone' ></i></div>
+                        <div class="mx-2">+92 323 594-8057</div>
+                    </div>
+                </div>
+            </div>
+            <div class="BottomBar absolute">
+                <div class="BottomSidebar">
+                    <img src="./app-assets/media/icons/facebook.png" alt="">
+                    <img src="./app-assets/media/icons/github.png" alt="">
+                    <img src="./app-assets/media/icons/pinterest.png" alt="">
+                </div>
+                <div class="BottomSidebar">
+                    <button type="button">Download CV</button>
+                </div>
+            </div>
+        </div>
+        <!-- Background -->
+        <div class="phone-background"></div>
+        <div class="phone-header mxy-auto">
+            <!-- Header on the landing page on phone -->
+            <div class="header-fix">
+                <a href="/" class="logo-box a-center a">
+                    <img src="./app-assets/media/logo/chd_logo.png" alt="">
+                    <div class="title-text">
+                        <span>Web</span><span>Craft</span>
+                    </div>
+                </a>
+            </div>
+            <!-- Header onn scroll of phone -->
+            <div class="header-scroll">
+
+            </div>
+        </div>
+
+        <!-- Spacer -->
+        <div class="header-n-name-spacer-phone"></div>
+
+        <!-- Owner Detail -->
+        <div class="owner-detail mxy-auto">
+            <p class="orange f-20 m-0">Hello, I'm</p>
+            <p class="">Zeeshan Ali</p>
+            <p class="f-20">
+                Web Developer
+            </p>
+            <!-- Social -->
+            <div class="social-phone">
+                <img src="./app-assets/media/icons/facebook.png" alt="">
+                <img src="./app-assets/media/icons/github.png" alt="">
+                <img src="./app-assets/media/icons/pinterest.png" alt="">
+            </div>
+            <!-- Image & Tagline -->
+            <div class="tagline-n-img">
+                <div class="tagline-phone">
+                    <p class="f-12">
+                        I'm a Website developer based in Rawalpindi, Pakistan. I'm very passionate and dedicated to my work.
+                    </p>
+                </div>
+                <div class="image-phone d-flex-center">
+                    <div class="phone-image-inner">
+                        <img src="./app-assets/media/Img/Shani-Phone.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- CV Download  -->
+            <div class="download-cv-from-phone"> <!-- CV Download  -->
+                <button type="button" class="button btn-outset-phone">Download CV</button>
+            </div>
+        </div>
+
+        <!-- First About Content -->
+        <div class="about-content-phone-first mxy-auto"> <!-- About Phone Content -->
+            <img src="./app-assets/media/Img/about_img_one.jpg" class="phone-content-img" alt="">
+            <p class="phone-content-identifier-tag">I'm a Website Developer</p>
+            <div class="phone-content-identifier-head">
+                I possess the capability to develop any website you desire
+            </div>
+            <div class="phone-content-first-text relative">
+                <p>
+                    Greetings from my digital playground, where design and practicality collide. As a proficient web developer, my area of expertise is creating a wide range of online experiences, including dynamic portfolios, commercial websites, and landing pages that make an impression.
+                    <br>
+                    Whether it's a non-profit website, education platform, or blog, I execute concepts with style and accuracy. View my portfolio to see how every line of code creates a cohesive, aesthetically pleasing digital landscape. Come along on a digital transformation journey with me, where your online presence will truly represent your identity and mission.
+                </p>
+                <img src="./app-assets/media/Img/style-fill-circle-blue.png" class="about-content-bg-img-1 absolute" alt="">
+            </div>
+        </div>
+
+        <!-- Portfolio Section -->
+        <div class="postfolio-section-phone mxy-auto"> <!-- Portfolio Section -->
+            <p class="phone-content-identifier-tag">My Portfolio</p>
+            <div class="phone-content-identifier-head relative">
+                Checkout Some of My Projects
+                <img src="./app-assets/media/Img/style-orange-dot-bg.png" alt="" class="absolute PortfolioImgBG">
+            </div>
+            <div class="portfolio-project-list-phone my-2">
+                <!-- Project -->
+                <div class="project-phone relative">
+                    <img src="./app-assets/media/projects/CDH_WebCraft.png" class="w-100 h-100" alt="">
+                    <div class="prj-detail-phone absolute a-center w-100">
+                        <span>CDH WebCraft</span>
+                        <span>(Portfolio Website)</span>
+                    </div>
+                </div>
+                <!-- Project -->
+                <div class="project-phone relative">
+                    <img src="./app-assets/media/projects/Studio_VIP.png" class="w-100 h-100" alt="">
+                    <div class="prj-detail-phone absolute a-center w-100">
+                        <span>StudioVIP</span>
+                        <span>(DJ's Platform)</span>
+                    </div>
+                </div>
+                <!-- Project -->
+                <div class="project-phone relative">
+                    <img src="./app-assets/media/projects/Creative_Solutions.png" class="w-100 h-100" alt="">
+                    <div class="prj-detail-phone absolute a-center w-100">
+                        <span>Creative Solutions</span>
+                        <span>(Portfolio Website)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="service-section-phone mxy-auto"> <!-- Service Phone Section -->
+            <p class="phone-content-identifier-tag">Services</p>
+            <div class="phone-content-identifier-head relative">
+                I Do
+                <div class="serviceBottomBar absolute">
+                    <div class="bottomBarDott absolute"></div>
+                </div>
+                <img src="./app-assets/media/Img/style-yellow-red-line.png" alt="" class="absolute ServiceImgBg">
+            </div>
+            <!-- Service Content -->
+            <div class="service-content-phone"> <!-- Serive Content -->
+                <div class="service-icon-phone">
+                    <div class="serviceIconRow space-around a-center">
+                        <img src="./app-assets/media/icons/Wordpress.png" alt="Wordpress Developer">
+                        <img src="./app-assets/media/icons/Shopify.png" class="serviceImg1" alt="Wordpress Developer">
+                    </div>
+                    <div class="serviceIconRow space-around a-center">
+                        <img src="./app-assets/media/icons/SEO.png" alt="Wordpress Developer">
+                        <img src="./app-assets/media/icons/Design & Development.png" class="serviceImg2" alt="Wordpress Developer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Phone Contact Section -->
+        <div class="phoneContactSetion mxy-auto"> <!-- Phone Contact Section -->
+            <p class="phone-content-identifier-tag">Contact</p>
+            <div class="phone-content-identifier-head relative">
+                Let's Get In Touch
+                <img src="./app-assets/media/Img/style-yellow-bg-mix.png" alt="" class="absolute ContactImgBG">
+            </div>
+            <form action="#">
+                <input type="text" name="name" id="" aria-label="Name" placeholder="Your Name">
+                <input type="text" name="contact" id="" aria-label="Contact" placeholder="Your Contact">
+                <input type="text" name="subject" id="" aria-label="Subject" placeholder="Your Subject">
+                <textarea type="text" name="messege" id="" aria-label="Messege" placeholder="Your Messege"></textarea>
+                <div class="flex-end">
+                    <button type="submit" class="button btn-outset-phone my-0">Submit</button>
+                </div>
+            </form>
+        </div>
+        <!-- Phone Footer Section -->
+        <div class="PhoneFooterSection relative"> <!-- Phone Footer -->
+            <div class="footer-subscribe-outer d-flex-center absolute">
+                <input type="text" name="" id="" aria-label="Email" placeholder="e.g., yourname@gmail.com">
+                <button type="submit" class="absolute">Subscribe</button>
+            </div>
+            <p class="absolute f-13 w-100">
+                <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> <span>CDH WebCraft</span> | All Rights Reserved</span>
+            </p>
+        </div>
+
+    </div>
+
+    <div id="scrollProgressBar"></div>
+    <a>
+        <button class="to-top-btn" id="goTopBtn" onclick="scrollToTop()">
+            TO TOP
+        </button>
+    </a>
+
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-mid"></div>
+    <div class="cursor-hover"></div>
+
+    <!-- <script src="./app-assets/js/scroll.js"></script> -->
+    <script src="./app-assets/js/script.js"></script>
+
+    <!-- Animation Liberary AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 </body>
 </html>
